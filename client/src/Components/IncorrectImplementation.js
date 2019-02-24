@@ -20,8 +20,21 @@ class IncorrectImplementation extends Component {
 		}).catch(err => console.log(err));
     };
 
-	toggleState = () => {
-		// if(this.props.history.location.pathname.indexOf("incorrect") > -1) {
+	toggleState = (close) => {
+		if(close) {
+			axios({
+				url: '/sidebar',
+				method: 'put',
+				data : {
+					open: false
+				}
+			}).then(res => {
+				this.setState({
+					...this.state,
+					open: res.data.open === "true"
+				});
+			}).catch(err => console.log(err));
+		} else {
 			axios({
 				url: '/sidebar',
 				method: 'put',
@@ -29,13 +42,12 @@ class IncorrectImplementation extends Component {
 					open: !this.state.open
 				}
 			}).then(res => {
-				console.log(res);
 				this.setState({
 					...this.state,
 					open: res.data.open === "true"
 				});
 			}).catch(err => console.log(err));
-		// }
+		}
 	};
 
 	render() {

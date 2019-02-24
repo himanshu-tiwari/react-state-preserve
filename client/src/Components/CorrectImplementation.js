@@ -13,13 +13,22 @@ class CorrectImplementation extends Component {
         });
     };
 
-	toggleState = () => {
-		this.setState({
-			...this.state,
-			open: !this.state.open
-		}, () => {
-            localStorage.setItem('sidebar', this.state.open);
-        });
+	toggleState = (close) => {
+		if(close) {
+			this.setState({
+				...this.state,
+				open: false
+			}, () => {
+				localStorage.setItem('sidebar', this.state.open);
+			});
+		} else {
+			this.setState({
+				...this.state,
+				open: !this.state.open
+			}, () => {
+				localStorage.setItem('sidebar', this.state.open);
+			});
+		}
 	};
 
 	render() {

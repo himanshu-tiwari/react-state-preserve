@@ -6,11 +6,18 @@ class BubblingImplementation extends Component {
 		open: false
     };
 
-	toggleState = () => {
-		this.setState({
-			...this.state,
-			open: !this.state.open
-		});
+	toggleState = (close) => {
+		if(close) {
+			this.setState({
+				...this.state,
+				open: false
+			});
+		} else {
+			this.setState({
+				...this.state,
+				open: !this.state.open
+			});
+		}
 	};
 
 	render() {
